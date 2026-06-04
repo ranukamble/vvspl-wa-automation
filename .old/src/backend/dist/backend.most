@@ -1,0 +1,265 @@
+// Version: 4.0.0
+type AppSettings__497224132 =
+  {
+    activeHoursEnd : Text;
+    activeHoursStart : Text;
+    dailyLimit : Nat;
+    delaySeconds : Nat;
+    warmupMode : Bool
+  };
+type AppSettings__526135375 =
+  {
+    activeHoursEnd : Text;
+    activeHoursStart : Text;
+    dailyLimit : Nat;
+    delaySeconds : Nat;
+    nodeBackendUrl : Text;
+    warmupMode : Bool
+  };
+type CampaignStatus__185148586 =
+  {#cancelled; #completed; #draft; #failed; #paused; #running; #scheduled};
+type CampaignStatus__397441306 =
+  {#cancelled; #completed; #draft; #failed; #paused; #running; #scheduled};
+type CampaignStatus__403882088 =
+  {#cancelled; #completed; #draft; #failed; #paused; #running; #scheduled};
+type Campaign__1040504996 =
+  {
+    createdAt : Int;
+    delaySeconds : Nat;
+    failedCount : Nat;
+    id : Text;
+    listId : Text;
+    mediaUrl : ?Text;
+    message : Text;
+    name : Text;
+    progress : Nat;
+    scheduledAt : ?Int;
+    sentCount : Nat;
+    status : CampaignStatus__403882088;
+    totalContacts : Nat
+  };
+type Campaign__70725519 =
+  {
+    createdAt : Int;
+    delaySeconds : Nat;
+    failedCount : Nat;
+    id : Text;
+    listId : Text;
+    mediaUrl : ?Text;
+    message : Text;
+    name : Text;
+    progress : Nat;
+    scheduledAt : ?Int;
+    sentCount : Nat;
+    status : CampaignStatus__397441306;
+    totalContacts : Nat
+  };
+type Campaign__893300487 =
+  {
+    createdAt : Int;
+    delaySeconds : Nat;
+    failedCount : Nat;
+    id : Text;
+    listId : Text;
+    mediaUrl : ?Text;
+    message : Text;
+    name : Text;
+    progress : Nat;
+    scheduledAt : ?Int;
+    sentCount : Nat;
+    status : CampaignStatus__185148586;
+    totalContacts : Nat
+  };
+type ContactList__171157319 =
+  {
+    contactCount : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    name : Text
+  };
+type ContactList__632634974 =
+  {
+    contactCount : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    name : Text
+  };
+type ContactList__699766864 =
+  {
+    contactCount : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    name : Text
+  };
+type Contact__331312301 =
+  {createdAt : Int; id : Text; listId : Text; name : Text; phone : Text};
+type Contact__581347399 =
+  {createdAt : Int; id : Text; listId : Text; name : Text; phone : Text};
+type Contact__88256763 =
+  {createdAt : Int; id : Text; listId : Text; name : Text; phone : Text};
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type MessageLog__1029701758 =
+  {
+    campaignId : Text;
+    contactId : Text;
+    contactName : Text;
+    contactPhone : Text;
+    errorMsg : ?Text;
+    id : Text;
+    status : MessageStatus__44914831;
+    timestamp : Int
+  };
+type MessageLog__627188015 =
+  {
+    campaignId : Text;
+    contactId : Text;
+    contactName : Text;
+    contactPhone : Text;
+    errorMsg : ?Text;
+    id : Text;
+    status : MessageStatus__553372228;
+    timestamp : Int
+  };
+type MessageLog__755452759 =
+  {
+    campaignId : Text;
+    contactId : Text;
+    contactName : Text;
+    contactPhone : Text;
+    errorMsg : ?Text;
+    id : Text;
+    status : MessageStatus__900263881;
+    timestamp : Int
+  };
+type MessageStatus__44914831 = {#failed; #queued; #sent};
+type MessageStatus__553372228 = {#failed; #queued; #sent};
+type MessageStatus__900263881 = {#failed; #queued; #sent};
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__58440520 =
+  {
+    appSettings : {var value : ?AppSettings__497224132};
+    campaigns : Map__222667396<Text, Campaign__70725519>;
+    clients : Map__222667396<Text, WaClient__779724605>;
+    contactLists : Map__222667396<Text, ContactList__171157319>;
+    contacts : Map__222667396<Text, Contact__581347399>;
+    counters : {var nextId : Nat};
+    messageLogs : Map__222667396<Text, MessageLog__755452759>;
+    qrCodes : Map__222667396<Text, Text>
+  };
+type NewActor__815117884 =
+  {
+    appSettings : {var value : ?NewAppSettings__1060137286};
+    campaigns : Map__222667396<Text, Campaign__1040504996>;
+    clients : Map__222667396<Text, WaClient__626119576>;
+    contactLists : Map__222667396<Text, ContactList__632634974>;
+    contacts : Map__222667396<Text, Contact__331312301>;
+    counters : {var nextId : Nat};
+    messageLogs : Map__222667396<Text, MessageLog__1029701758>;
+    qrCodes : Map__222667396<Text, Text>
+  };
+type NewAppSettings__1060137286 =
+  {
+    activeHoursEnd : Text;
+    activeHoursStart : Text;
+    dailyLimit : Nat;
+    delaySeconds : Nat;
+    nodeBackendUrl : Text;
+    warmupMode : Bool
+  };
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type OldActor__166002484 = {};
+type OldActor__870043714 =
+  {
+    appSettings : {var value : ?OldAppSettings__676573171};
+    campaigns : Map__222667396<Text, Campaign__1040504996>;
+    clients : Map__222667396<Text, WaClient__626119576>;
+    contactLists : Map__222667396<Text, ContactList__632634974>;
+    contacts : Map__222667396<Text, Contact__331312301>;
+    counters : {var nextId : Nat};
+    messageLogs : Map__222667396<Text, MessageLog__1029701758>;
+    qrCodes : Map__222667396<Text, Text>
+  };
+type OldAppSettings__676573171 =
+  {
+    activeHoursEnd : Text;
+    activeHoursStart : Text;
+    dailyLimit : Nat;
+    delaySeconds : Nat;
+    warmupMode : Bool
+  };
+type WaClientStatus__345552613 = {#connected; #connecting; #disconnected};
+type WaClientStatus__892486116 = {#connected; #connecting; #disconnected};
+type WaClientStatus__979838581 = {#connected; #connecting; #disconnected};
+type WaClient__212903301 =
+  {
+    connectedAt : ?Int;
+    displayName : Text;
+    id : Text;
+    phone : ?Text;
+    status : WaClientStatus__892486116
+  };
+type WaClient__626119576 =
+  {
+    connectedAt : ?Int;
+    displayName : Text;
+    id : Text;
+    phone : ?Text;
+    status : WaClientStatus__345552613
+  };
+type WaClient__779724605 =
+  {
+    connectedAt : ?Int;
+    displayName : Text;
+    id : Text;
+    phone : ?Text;
+    status : WaClientStatus__979838581
+  };
+{
+  "20260604_000000_Init" : OldActor__166002484 -> NewActor__58440520;
+  "20260604_120000_AddNodeBackendUrl" :
+    (old : OldActor__870043714) -> NewActor__815117884
+}
+actor  {
+  stable appSettings : {var value : ?AppSettings__526135375};
+  stable campaigns :
+    {
+      var root : Node__1000929467<Text, Campaign__893300487>;
+      var size : Nat__1040412405
+    };
+  stable clients :
+    {
+      var root : Node__1000929467<Text, WaClient__212903301>;
+      var size : Nat__1040412405
+    };
+  stable contactLists :
+    {
+      var root : Node__1000929467<Text, ContactList__699766864>;
+      var size : Nat__1040412405
+    };
+  stable contacts :
+    {
+      var root : Node__1000929467<Text, Contact__88256763>;
+      var size : Nat__1040412405
+    };
+  stable counters : {var nextId : Nat};
+  stable messageLogs :
+    {
+      var root : Node__1000929467<Text, MessageLog__627188015>;
+      var size : Nat__1040412405
+    };
+  stable qrCodes :
+    {var root : Node__1000929467<Text, Text>; var size : Nat__1040412405}
+};

@@ -1,0 +1,149 @@
+type WaClientStatus = 
+ variant {
+   connected;
+   connecting;
+   disconnected;
+ };
+type WaClient = 
+ record {
+   connectedAt: opt int;
+   displayName: text;
+   id: text;
+   phone: opt text;
+   status: WaClientStatus;
+ };
+type MessageStatus = 
+ variant {
+   failed;
+   queued;
+   sent;
+ };
+type MessageLog = 
+ record {
+   campaignId: text;
+   contactId: text;
+   contactName: text;
+   contactPhone: text;
+   errorMsg: opt text;
+   id: text;
+   status: MessageStatus;
+   timestamp: int;
+ };
+type GroupMember = 
+ record {
+   name: text;
+   phone: text;
+ };
+type DashboardSummary = 
+ record {
+   activeCampaigns: nat;
+   connectedClients: nat;
+   messagesToday: nat;
+   totalContacts: nat;
+ };
+type DailyMessageStat = 
+ record {
+   count: nat;
+   date: text;
+ };
+type ContactsGrowthStat = 
+ record {
+   date: text;
+   total: nat;
+ };
+type ContactList = 
+ record {
+   contactCount: nat;
+   createdAt: int;
+   description: text;
+   id: text;
+   name: text;
+ };
+type Contact = 
+ record {
+   createdAt: int;
+   id: text;
+   listId: text;
+   name: text;
+   phone: text;
+ };
+type CampaignStatus = 
+ variant {
+   cancelled;
+   completed;
+   draft;
+   failed;
+   paused;
+   running;
+   scheduled;
+ };
+type CampaignPerformanceStat = 
+ record {
+   campaignName: text;
+   failed: nat;
+   sent: nat;
+ };
+type Campaign = 
+ record {
+   createdAt: int;
+   delaySeconds: nat;
+   failedCount: nat;
+   id: text;
+   listId: text;
+   mediaUrl: opt text;
+   message: text;
+   name: text;
+   progress: nat;
+   scheduledAt: opt int;
+   sentCount: nat;
+   status: CampaignStatus;
+   totalContacts: nat;
+ };
+type AppSettings = 
+ record {
+   activeHoursEnd: text;
+   activeHoursStart: text;
+   dailyLimit: nat;
+   delaySeconds: nat;
+   nodeBackendUrl: text;
+   warmupMode: bool;
+ };
+type AnalyticsData = 
+ record {
+   campaignPerformance: vec CampaignPerformanceStat;
+   contactsGrowth: vec ContactsGrowthStat;
+   dailyMessages: vec DailyMessageStat;
+ };
+service : {
+  addContact: (listId: text, name: text, phone: text) -> (Contact);
+  cancelCampaign: (id: text) -> (Campaign);
+  connectClient: (clientId: text) -> (WaClient);
+  createCampaign: (name: text, listId: text, message: text, mediaUrl:
+   opt text, delaySeconds: nat, scheduledAt: opt int) -> (Campaign);
+  createContactList: (name: text, description: text) -> (ContactList);
+  deleteCampaign: (id: text) -> (bool);
+  deleteContact: (id: text) -> (bool);
+  deleteContactList: (id: text) -> (bool);
+  disconnectClient: (clientId: text) -> (WaClient);
+  executeCampaign: (id: text) -> (Campaign);
+  extractGroupMembers: (groupId: text) -> (vec GroupMember) query;
+  getAnalyticsData: () -> (AnalyticsData) query;
+  getCampaigns: () -> (vec Campaign) query;
+  getClientQr: (clientId: text) -> (opt text) query;
+  getClients: () -> (vec WaClient) query;
+  getContactLists: () -> (vec ContactList) query;
+  getContacts: (listId: text) -> (vec Contact) query;
+  getDashboardSummary: () -> (DashboardSummary) query;
+  getMessageLogCount: (campaignId: opt text, status: opt text) -> (nat) query;
+  getMessageLogs: (campaignId: opt text, status: opt text, limit: nat,
+   offset: nat) -> (vec MessageLog) query;
+  getSettings: () -> (AppSettings) query;
+  importContacts: (listId: text, items:
+   vec record {
+         name: text;
+         phone: text;
+       }) -> (nat);
+  pauseCampaign: (id: text) -> (Campaign);
+  tickCampaignProgress: (id: text) -> (Campaign);
+  updateSettings: (settings: AppSettings) -> (AppSettings);
+}

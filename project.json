@@ -1,0 +1,23 @@
+{
+  "overview": "A full-featured WhatsApp Automation Dashboard for managing multiple WhatsApp accounts, bulk messaging campaigns, contacts, and analytics — with support for connecting to a real external Node.js backend.",
+  "features": [
+    "Configure external Node.js backend URL from Settings to enable real WhatsApp connections",
+    "WhatsApp Clients page shows real QR codes and client status from the external backend",
+    "Clear setup guidance when backend is not yet configured",
+    "Campaigns with scheduling, execution, pause, and cancel",
+    "Contact list management with CSV import",
+    "Message history with filtering and pagination",
+    "Analytics charts for daily messages, campaign performance, and contacts growth",
+    "Settings for daily limits, delays, active hours, and backend URL"
+  ],
+  "category": "dashboard",
+  "tags": [
+    "whatsapp",
+    "automation",
+    "messaging",
+    "campaigns",
+    "analytics",
+    "dashboard"
+  ],
+  "last_updated": "2026-06-04T06:04:43.729Z"
+}
